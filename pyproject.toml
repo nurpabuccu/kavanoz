@@ -6,7 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "kavanoz"
 version = "0.0.1"
 keywords = ["android","malware","unpacking","packer"]
-license = {file="LICENSE"}
 readme = "README.md"
 description = "Unpacking framework for common android malware"
 dynamic = ["dependencies"]
@@ -17,6 +16,10 @@ authors = [
 maintainers = [
   {name = "Ahmet Bilal Can", email = "eybisii@gmail.com"}
 ]
+
+[project.license]
+text = "MIT"
+
 [tool.setuptools.dynamic]
 dependencies = {file = ['requirements.txt']}
 [project.scripts]
