@@ -74,18 +74,19 @@ class LoaderSimpleAes(Unpacker):
                                 self.logger.info("Found method")
                                 target_method = m
                                 m = re.findall(find_aes_function, m_smali)
-                                klass, method = m[0].split("->")
-                                target_method = self.find_method(
-                                    klass,
-                                    method,
-                                    "(Landroid/content/Context; Ljava/lang/String; Ljava/io/File;)Z",
-                                )
-                                if target_method:
-                                    aes_key = re.findall(
-                                        find_aes_key, self.get_smali(target_method)
+                                if m:
+                                    klass, method = m[0].split("->")
+                                    target_method = self.find_method(
+                                        klass,
+                                        method,
+                                        "(Landroid/content/Context; Ljava/lang/String; Ljava/io/File;)Z",
                                     )
-                                    if aes_key:
-                                        return aes_key[0]
+                                    if target_method:
+                                        aes_key = re.findall(
+                                            find_aes_key, self.get_smali(target_method)
+                                        )
+                                        if aes_key:
+                                            return aes_key[0]
 
         return None
 
